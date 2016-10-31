@@ -27,6 +27,7 @@ class BoringButton(BigRedButton):
     def on_button_release(self):
         print(colored('---DEPLOY INITIATED---\n', 'green', attrs=['bold']))
         print(colored('Please close lid.\n', 'white'))
+        print(colored('Working...\n', 'white'))
         deployLatestVersion()
         time.sleep(10)
         health_status = None
