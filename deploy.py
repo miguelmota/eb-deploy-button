@@ -1,6 +1,7 @@
 import boto3
 import time
 import json
+import os
 from termcolor import colored
 from big_red import BigRedButton
 
@@ -14,6 +15,8 @@ class BoringButton(BigRedButton):
 
     def on_cover_open(self):
         print(colored('WARNING!! The cover has been opened. DEPLOY AT YOUR RISK.\n', 'yellow', attrs=['bold']))
+        os.system('mpg321 ./assets/siren.mp3 > /dev/null 2>&1 &')
+        os.system('sleep 6 && pkill mpg321 &')
 
     def on_cover_close(self):
         print(colored('The cover has been closed.\n', 'white'))
