@@ -10,7 +10,7 @@ client = boto3.client('elasticbeanstalk')
 #env = 'reportal-docker-prod'
 env = 'reportal-docker-dev'
 
-class BoringButton(BigRedButton):
+class DeployButton(BigRedButton):
     def on_unknown(self):
 	      print(colored('The button is in an unknown state.\n', 'yellow'))
 
@@ -100,5 +100,5 @@ def getEnvHealth():
 
 if __name__ == '__main__':
     print(colored('On stand by..\n', 'white'))
-    button = BoringButton()
+    button = DeployButton()
     button.run()
