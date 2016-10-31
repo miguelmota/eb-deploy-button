@@ -1,5 +1,7 @@
 # Portal Deploy Button
 
+> Deploy latest reportal application release on Elastic Beanstalk to production.
+
 <img src="./assets/big_red_button.jpg" width="400">
 
 ## Requirements

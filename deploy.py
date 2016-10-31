@@ -7,6 +7,7 @@ from big_red import BigRedButton
 
 client = boto3.client('elasticbeanstalk')
 
+#env = 'reportal-docker-prod'
 env = 'reportal-docker-dev'
 
 class BoringButton(BigRedButton):
