@@ -7,8 +7,8 @@
 ## Requirements
 
 - Python 2.7+
-- `mpg321` [optional] (for audio)
-- `espeak` [optional] (for speech)
+- `mpg321` (for audio)
+- `espeak` (for speech)
 - Python libs
 	- `boto3` (AWS library)
 	- `pyusb`
