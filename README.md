@@ -1,6 +1,6 @@
-# Portal Deploy Button
+# Elastic Beanstalk Deploy Button
 
-> Deploy latest reportal application release on Elastic Beanstalk to production.
+> Deploy latest application release on Elastic Beanstalk to an environment.
 
 <img src="./assets/big_red_button.jpg" width="400">
 
@@ -14,6 +14,25 @@
 	- `termcolor`
 
 # Configure
+
+AWS keys
+
+`~/.aws/config`
+
+```text
+[default]
+region = YOUR_AWS_REGION
+```
+
+`~/.aws/credentials`
+
+```text
+[default]
+aws_access_key_id = YOUR_ACCESS_KEY_ID
+aws_secret_access_key = YOUR_SECRET_ACCESS_KEY
+```
+
+Environment variables
 
 ```bash
 export EB_ENV_NAME='reportal-docker-prod'
