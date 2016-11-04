@@ -7,7 +7,7 @@ from big_red import BigRedButton
 
 client = boto3.client('elasticbeanstalk')
 
-env = 'reportal-docker-dev'
+env = 'reportal-docker-prod'
 
 class BoringButton(BigRedButton):
     def on_unknown(self):
@@ -15,6 +15,7 @@ class BoringButton(BigRedButton):
 
     def on_cover_open(self):
         print(colored('WARNING!! The cover has been opened. DEPLOY AT YOUR RISK.\n', 'yellow', attrs=['bold']))
+        os.system('espeak "Ready to deploy to ' + env + '. All systems go."')
         os.system('mpg321 ./assets/siren.mp3 > /dev/null 2>&1 &')
         os.system('sleep 6 && pkill mpg321 &')
 
@@ -27,6 +28,8 @@ class BoringButton(BigRedButton):
     def on_button_release(self):
         print(colored('---DEPLOY INITIATED---\n', 'green', attrs=['bold']))
         print(colored('Please close lid.\n', 'white'))
+        os.system('espeak "Deploy initiated."')
+        os.system('espeak "This may take a couple minutes."')
         deployLatestVersion()
         time.sleep(10)
         health_status = None
@@ -45,6 +48,7 @@ class BoringButton(BigRedButton):
 
           if last_health_status != health_status:
             print('Health status: ' + health_status_c + '\n')
+            os.system('espeak "Health status changed to ' + health_status + '."')
 
           env_events_response = getEnvEvents()
 
@@ -55,11 +59,14 @@ class BoringButton(BigRedButton):
               date = event['EventDate']
               if last_message != message:
                 print(colored('> ', 'blue') + colored(message, 'white') + '\n')
+                os.system('espeak "' + message + '"')
 
         if health_status == 'Ok':
           print(colored('Deploy successful.\n', 'green', attrs=['bold']))
+          os.system('espeak "Deploy successfully completed."')
         else:
           print(colored('There was an error with deployment.\n', 'red', attrs=['bold']))
+          os.system('espeak "Failure. There was an error with deployment."')
 
 
 def deployLatestVersion():
@@ -98,5 +105,6 @@ def getEnvHealth():
 
 if __name__ == '__main__':
     print(colored('On stand by..\n', 'white'))
+    os.system('sdfasdf "Ready to deploy. All systems go."')
     button = BoringButton()
     button.run()
