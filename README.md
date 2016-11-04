@@ -7,13 +7,14 @@
 ## Requirements
 
 - Python 2.7+
-- `mpg321` (for audio)
+- `mpg321` [optional] (for audio)
+- `espeak` [optional] (for speech)
 - Python libs
 	- `boto3` (AWS library)
 	- `pyusb`
 	- `termcolor`
 
-# Configure
+## Configure
 
 AWS keys
 
@@ -35,12 +36,45 @@ aws_secret_access_key = YOUR_SECRET_ACCESS_KEY
 Environment variables
 
 ```bash
-export EB_ENV_NAME='reportal-docker-prod'
-export EB_APP_NAME='reportal'
+export EB_ENV_NAME="YOUR_ELASTIC_BEANSTALK_ENVIRONMENT_NAME"
+export EB_APP_NAME="YOUR_ELASTIC_BEANSTALK_APPLICATION_NAME"
 ```
 
 ## Run
 
 ```bash
-python deploy.py
+pi@raspberrypi:~/dev/eb-deploy-button $ python deploy.py
+On stand by..
+
+WARNING!! The cover has been opened. DEPLOY AT YOUR RISK.
+
+The button has been pressed. Release to deploy.
+
+---DEPLOY INITIATED---
+
+Please close lid.
+
+Deploying latest version: moogs.moogs-docker-prod.3b526833072.20161104-001943
+
+Health status: Info
+
+> Deploying new version to instance(s).
+
+> Environment health has transitioned from Ok to Info. Application update in progress on 1 instance. 0 out of 1 instance completed (running for 11 seconds).
+
+> Docker container 870734c71e15 is running aws_beanstalk/current-app.
+
+Health status: Ok
+
+> Environment update completed successfully.
+
+Deploy successful.
 ```
+
+# Credits
+
+- [big_red](https://github.com/patricksmith/big_red) Python lib
+
+# License
+
+MIT
