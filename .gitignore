@@ -101,3 +101,8 @@ tmp
 #######################
 .VimballRecord
 .netrwhist
+
+# Python files
+#######################
+__pycache__
+*.pyc

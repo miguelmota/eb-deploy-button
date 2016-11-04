@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import boto3
 import time
 import json
@@ -7,9 +9,14 @@ from big_red import BigRedButton
 
 client = boto3.client('elasticbeanstalk')
 
+<<<<<<< HEAD
 env = 'reportal-docker-prod'
+=======
+#env = 'reportal-docker-prod'
+env = 'reportal-docker-dev'
+>>>>>>> d2ea12f48dfd6bfb9522a5e8bb52acca2cdd97e7
 
-class BoringButton(BigRedButton):
+class DeployButton(BigRedButton):
     def on_unknown(self):
 	      print(colored('The button is in an unknown state.\n', 'yellow'))
 
@@ -28,8 +35,12 @@ class BoringButton(BigRedButton):
     def on_button_release(self):
         print(colored('---DEPLOY INITIATED---\n', 'green', attrs=['bold']))
         print(colored('Please close lid.\n', 'white'))
+<<<<<<< HEAD
         os.system('espeak "Deploy initiated."')
         os.system('espeak "This may take a couple minutes."')
+=======
+        print(colored('Working...\n', 'white'))
+>>>>>>> d2ea12f48dfd6bfb9522a5e8bb52acca2cdd97e7
         deployLatestVersion()
         time.sleep(10)
         health_status = None
@@ -105,6 +116,10 @@ def getEnvHealth():
 
 if __name__ == '__main__':
     print(colored('On stand by..\n', 'white'))
+<<<<<<< HEAD
     os.system('sdfasdf "Ready to deploy. All systems go."')
     button = BoringButton()
+=======
+    button = DeployButton()
+>>>>>>> d2ea12f48dfd6bfb9522a5e8bb52acca2cdd97e7
     button.run()
