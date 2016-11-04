@@ -13,6 +13,13 @@
 	- `pyusb`
 	- `termcolor`
 
+# Configure
+
+```bash
+export EB_ENV_NAME='reportal-docker-prod'
+export EB_APP_NAME='reportal'
+```
+
 ## Run
 
 ```bash

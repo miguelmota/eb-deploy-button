@@ -9,12 +9,8 @@ from big_red import BigRedButton
 
 client = boto3.client('elasticbeanstalk')
 
-<<<<<<< HEAD
-env = 'reportal-docker-prod'
-=======
-#env = 'reportal-docker-prod'
-env = 'reportal-docker-dev'
->>>>>>> d2ea12f48dfd6bfb9522a5e8bb52acca2cdd97e7
+envName = os.environ['EB_ENV_NAME']
+appName = os.environ['EB_APP_NAME']
 
 class DeployButton(BigRedButton):
     def on_unknown(self):
@@ -22,7 +18,7 @@ class DeployButton(BigRedButton):
 
     def on_cover_open(self):
         print(colored('WARNING!! The cover has been opened. DEPLOY AT YOUR RISK.\n', 'yellow', attrs=['bold']))
-        os.system('espeak "Ready to deploy to ' + env + '. All systems go."')
+        os.system('espeak "Ready to deploy to ' + envName + '. All systems go."')
         os.system('mpg321 ./assets/siren.mp3 > /dev/null 2>&1 &')
         os.system('sleep 6 && pkill mpg321 &')
 
@@ -35,12 +31,8 @@ class DeployButton(BigRedButton):
     def on_button_release(self):
         print(colored('---DEPLOY INITIATED---\n', 'green', attrs=['bold']))
         print(colored('Please close lid.\n', 'white'))
-<<<<<<< HEAD
-        os.system('espeak "Deploy initiated."')
-        os.system('espeak "This may take a couple minutes."')
-=======
         print(colored('Working...\n', 'white'))
->>>>>>> d2ea12f48dfd6bfb9522a5e8bb52acca2cdd97e7
+        os.system('espeak "Deploy initiated. This may take a couple minutes."')
         deployLatestVersion()
         time.sleep(10)
         health_status = None
@@ -82,14 +74,14 @@ class DeployButton(BigRedButton):
 
 def deployLatestVersion():
     response = client.describe_application_versions(
-        ApplicationName='reportal',
+        ApplicationName=appName,
         MaxRecords=1
     )
 
     latest_version = response['ApplicationVersions'][0]['VersionLabel']
 
     response = client.update_environment(
-        EnvironmentName=env,
+        EnvironmentName=envName,
         VersionLabel=latest_version
     )
 
@@ -98,7 +90,7 @@ def deployLatestVersion():
 
 def getEnvEvents(max_records=1):
     response = client.describe_events(
-        EnvironmentName=env,
+        EnvironmentName=envName,
         MaxRecords=max_records
     )
 
@@ -109,17 +101,12 @@ def getEnvHealth():
         AttributeNames=[
             'All'
         ],
-        EnvironmentName=env,
+        EnvironmentName=envName,
     )
 
     return response
 
 if __name__ == '__main__':
     print(colored('On stand by..\n', 'white'))
-<<<<<<< HEAD
-    os.system('sdfasdf "Ready to deploy. All systems go."')
-    button = BoringButton()
-=======
     button = DeployButton()
->>>>>>> d2ea12f48dfd6bfb9522a5e8bb52acca2cdd97e7
     button.run()
